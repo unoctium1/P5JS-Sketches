@@ -26,7 +26,7 @@ function setup() {
   backColor = color(125, 240, 240);
   frontColor = color(240, 75, 240);
   
-  createDiv('options');
+  createDiv('options').hide();
   let button = createButton("Options");
   button.position(19,19);
   button.mousePressed(toggleOptions);
