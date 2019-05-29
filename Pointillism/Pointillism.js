@@ -1,16 +1,16 @@
 var img;
 var WIDTH;
 var HEIGHT;
-var c;
 
 let loaded = false;
 
+
 function setup() {
   // create canvas
-  c = createCanvas(710, 400);
+  const c = createCanvas(710, 400);
   background(100);
   // Add an event for when a file is dropped onto the canvas
-  c.drop(gotFile);
+  c.drop(file => loadImage(file.data, img => handleImage(), img=> failImage()));
 
 
 }
@@ -72,14 +72,12 @@ function handleImage(){
     loop();
 }
 
-function gotFile(file) {
-  // If it's an image file
-  if (file.type === 'image') {
-    // load the image
-    img = loadImage(file.data, img => handleImage());
-  } else {
-    console.log('Not an image file!');
-  }
+function failImage(){
+  fill(255);
+    noStroke();
+    textSize(24);
+    textAlign(CENTER);
+    text('Failed!', width / 2, height / 2 + 40);
 }
 
 function getNewColor(c, variance) {

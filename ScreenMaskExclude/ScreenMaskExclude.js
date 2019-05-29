@@ -11,9 +11,12 @@ let r = RectType.normal;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
-  noStroke();
+  back = createGraphics(windowWidth, windowHeight);
+  back.noStroke();
   reset();
   counter = 0;
+  foreground = createTextMask("test", windowWidth, windowHeight);
+  blendMode(EXCLUSION);
 }
 
 function keyPressed() {
@@ -43,26 +46,35 @@ function reset(){
 }
 
 function draw(){
+  clear();
   if(!isStaticNoise){
     counter +=1 ;
     if(counter >= refreshRate){ reset();}
   }
   handleMouse();
-  background(255);
-  noStroke();
-  for(i =0; i < width; i+=pix){
-    for(j =0; j < height; j+=pix){
-      fill(randomColor());
+  back.background(255);
+  back.noStroke();
+  for(i =0; i < back.width; i+=pix){
+    for(j =0; j < back.height; j+=pix){
+      back.fill(randomColor());
       chooseRect(i, j);
     }
   }
-
+  image(back,0,0);
+  image(foreground,0,0);
+  /*
+  strokeWeight(2);
+  stroke(0);
+  noFill();
+  textSize(200);
+  text("test", windowWidth/2, windowHeight/2);
+  */
 }
 
 function chooseRect(x, y){
   switch(r){
         case 1:
-          rect(x, y, pix, pix);
+          back.rect(x, y, pix, pix);
           break;
         case 2:
           boxxyyyyyyy(x, y);
@@ -80,7 +92,7 @@ function chooseRect(x, y){
 }
 
 function noisyRect(x, y){
-  rect(x, y, random(1, width-x), random(1, height-y));
+  back.rect(x, y, random(1, width-x), random(1, height-y));
 }
 
 function randomRect(x, y){
@@ -90,11 +102,11 @@ function randomRect(x, y){
 }
 
 function boxxyyyyyyy(x, y){
-  rect(x, y, random(1, pix+15), random(1, pix+15));
+  back.rect(x, y, random(1, pix+15), random(1, pix+15));
 }
 
 function shakyRect(x, y){
-  rect(x, y, random(pix-5, pix+15), random(pix-5, pix+15));
+  back.rect(x, y, random(pix-5, pix+15), random(pix-5, pix+15));
 }
 
 function handleMouse(){
@@ -115,4 +127,13 @@ function randomColor(){
     randomSeed(random(lowerBound,higherBound)); //this is pretty fun
   }
   return color(random(0,255), random(0,255), random(0,255));
+}
+
+function createTextMask(str, w, h){
+  let mask = createGraphics(w, h);
+  mask.fill(255);
+  mask.textSize(w/4);
+  mask.textAlign(CENTER, CENTER);
+  mask.text(str, w/2, h/2);
+  return mask;
 }
