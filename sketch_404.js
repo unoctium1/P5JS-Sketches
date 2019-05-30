@@ -4,7 +4,7 @@ let decrease = false;
 let isStaticNoise = false;
 
 let isPaused = false;
-
+let path = window.location.pathname;
 let string = "404 PAGE NOT FOUND";
 let ts = 145;
 
@@ -23,7 +23,7 @@ function setup(){
   back.noStroke();
   reset();
   counter = 0;
-  foreground = createTextMask(string, width, height).get();
+  foreground = createTextMask(path, width, height).get();
 }
 
 function keyPressed() {
