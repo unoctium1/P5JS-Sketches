@@ -5,6 +5,7 @@ let isStaticNoise = false;
 
 let isPaused = false;
 let path = window.location.pathname;
+
 let string = "404 PAGE NOT FOUND";
 let ts = 145;
 
