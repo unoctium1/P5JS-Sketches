@@ -15,7 +15,7 @@ function setup(){
   back.noStroke();
   reset();
   counter = 0;
-  foreground = createTextMask("test", windowWidth, windowHeight);
+  foreground = createTextMask("path", windowWidth, windowHeight);
   blendMode(EXCLUSION);
 }
 
@@ -112,7 +112,7 @@ function shakyRect(x, y){
 function handleMouse(){
   if(pix >= 100){ decrease = true;}
   if(pix <= 7){ decrease = false;}
-  
+
   if(mouseIsPressed){
     if(!decrease){
       pix++;
