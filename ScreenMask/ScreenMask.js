@@ -68,6 +68,7 @@ function draw(){
     if(counter >= refreshRate){ reset();}
   }
   handleMouse();
+  background(255);
   back.background(255);
   for(i =0; i < back.width; i+=pix){
     for(j =0; j < back.height; j+=pix){
