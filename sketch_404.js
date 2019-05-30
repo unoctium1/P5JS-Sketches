@@ -17,7 +17,8 @@ function preload() {
 }
 
 function setup(){
-  createCanvas(800, 500);
+  const c = createCanvas(800, 500);
+  c.parent('anim');
   back = createGraphics(width, height);
   back.noStroke();
   reset();
@@ -38,11 +39,11 @@ function keyPressed() {
     isPaused = !isPaused;
   }
   /*
-  if(keyCode == UP_ARROW){ 
+  if(keyCode == UP_ARROW){
     ts ++;
     foreground = createTextMask(string, width, height).get();
   }
-  if(keyCode == DOWN_ARROW){ 
+  if(keyCode == DOWN_ARROW){
     ts --;
     foreground = createTextMask(string, width, height).get();
   }
@@ -125,7 +126,7 @@ function shakyRect(x, y){
 function handleMouse(){
   if(pix >= 100){ decrease = true;}
   if(pix <= 7){ decrease = false;}
-  
+
   if(mouseIsPressed){
     if(!decrease){
       pix++;
