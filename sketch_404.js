@@ -6,7 +6,6 @@ let isStaticNoise = false;
 let isPaused = false;
 let path = window.location.pathname;
 
-let string = "404 PAGE NOT FOUND";
 let ts = 145;
 
 const RectType = {"normal":1, "boxxy":2, "noisy":3, "shaky":4, "random":5};
@@ -24,7 +23,8 @@ function setup(){
   back.noStroke();
   reset();
   counter = 0;
-  foreground = createTextMask(path, width, height).get();
+  todisplay = path.replace("/P5JS-Sketches/", "Error 404")
+  foreground = createTextMask(todisplay, width, height).get();
 }
 
 function keyPressed() {
