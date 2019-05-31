@@ -15,7 +15,7 @@ function setup(){
   back.noStroke();
   reset();
   counter = 0;
-  foreground = createTextMask("path", windowWidth, windowHeight);
+  foreground = createTextMask("Test", windowWidth, windowHeight);
   blendMode(EXCLUSION);
 }
 
