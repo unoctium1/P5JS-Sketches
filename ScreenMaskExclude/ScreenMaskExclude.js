@@ -15,7 +15,10 @@ function setup(){
   back.noStroke();
   reset();
   counter = 0;
-  foreground = createTextMask("Test", windowWidth, windowHeight);
+  textcounter = 0;
+  toWrite = "Hit backspace to clear, type to add text"
+  ts = width/toWrite.length;
+  foreground = createTextMask(toWrite, windowWidth, windowHeight);
   blendMode(EXCLUSION);
 }
 
@@ -23,7 +26,7 @@ function keyPressed() {
   if (key == ' ') {
     isStaticNoise = !isStaticNoise;
   }
-  if(key == 'p'){
+  if(keyCode == ESCAPE){
     if(isPaused){
        loop();
     }else{
@@ -31,11 +34,32 @@ function keyPressed() {
     }
     isPaused = !isPaused;
   }
-  if(key == 'b'){ r = RectType.boxxy;}
-  if(key == 'n'){ r = RectType.normal;}
-  if(key == 'm'){ r = RectType.noisy;}
-  if(key == 'v'){ r = RectType.shaky;}
-  if(key == 'c'){ r = RectType.random;}
+  if(keyCode == UP_ARROW){
+    if(r == 5){r = 0;}
+    else{r++;}
+  }
+  if(keyCode == DOWN_ARROW){
+    if(r == 1){r = 5;}
+    else{r--;}
+  }
+  if(keyCode == BACKSPACE || keyCode == DELETE){
+    toWrite = "";
+    ts = width/4;
+    textcounter = 0;
+    foreground = createTextMask(toWrite, windowWidth, windowHeight);
+  }
+}
+
+function keyTyped(){
+  toWrite += key;
+  if(textcounter > 1){
+    if(toWrite.length > 4){
+      ts = width/toWrite.length;
+    }
+    textcounter = 0;
+  }
+  textcounter++;
+  foreground = createTextMask(toWrite, windowWidth, windowHeight);
 }
 
 function reset(){
@@ -132,7 +156,7 @@ function randomColor(){
 function createTextMask(str, w, h){
   let mask = createGraphics(w, h);
   mask.fill(255);
-  mask.textSize(w/4);
+  mask.textSize(ts);
   mask.textAlign(CENTER, CENTER);
   mask.text(str, w/2, h/2);
   return mask;
