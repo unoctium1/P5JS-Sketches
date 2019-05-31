@@ -21,33 +21,37 @@ var fsSlider, bsSlider, fuSlider, buSlider, flSlider, blslider;
 var numBackgroundBubbles, numFrontBubbles;
 
 function setup() {
-  createCanvas(800, 800);
-  
+  createCanvas(windowWidth, windowHeight);
+
   backColor = color(125, 240, 240);
   frontColor = color(240, 75, 240);
-  
+
   createDiv('options').hide();
   let button = createButton("Options");
   button.position(19,19);
   button.mousePressed(toggleOptions);
-  
+
   let button1 = createButton("Reset");
   button1.addClass('options');
   button1.position(100,19);
   button1.mousePressed(setupBubbles);
-  
+
   createSliders();
   panel = selectAll('.options');
   toggleOptions();
   setupBubbles();
 }
 
+function windowResized(){
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function toggleOptions(){
   for(i = 0; i < panel.length; i++){
     if(isOptionsOn){
-     panel[i].hide(); 
+     panel[i].hide();
     }else{
-      panel[i].show(); 
+      panel[i].show();
     }
   }
   isOptionsOn = !isOptionsOn;
@@ -60,14 +64,14 @@ function createSliders(){
   fcPicker.addClass('options');
   bcPicker.position(19, 280);
   fcPicker.position(100, 280);
-  
+
   numBackgroundBubbles = createSlider(0, 500, backCount, 1);
   numBackgroundBubbles.addClass('options');
   numBackgroundBubbles.position(19,40);
   numFrontBubbles = createSlider(0, 500, frontCount, 1);
   numFrontBubbles.addClass('options');
   numFrontBubbles.position(19,70);
-  
+
   fsSlider = createSlider(0, 1, mousespeed, 0.1);
   fsSlider.position(19, 100);
   fsSlider.addClass('options');
@@ -86,7 +90,7 @@ function createSliders(){
   blSlider = createSlider(0, 100, lc, 1);
   blSlider.position(19, 250);
   blSlider.addClass('options');
-  
+
 }
 
 function writeLabels(){
@@ -118,7 +122,7 @@ function setupBubbles(){
 }
 
 function draw() {
-  
+
   speed = bsSlider.value();
   mousespeed = fsSlider.value();
   uc = buSlider.value();
@@ -127,7 +131,7 @@ function draw() {
   mouselc = flSlider.value();
   backColor = bcPicker.value();
   frontColor = fcPicker.value();
-  
+
   background(255);
   for (i = 0; i < bubbles.length; i++){
     bubbles[i].setNewVals(lc, uc, backColor, speed);
