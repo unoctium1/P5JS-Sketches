@@ -17,13 +17,13 @@ function preload() {
 }
 
 function setup(){
-  const c = createCanvas(800, 500);
+  const c = createCanvas(screenWidth, 1/screenWidth * 400000);
   c.parent('anim');
   back = createGraphics(width, height);
   back.noStroke();
   reset();
   counter = 0;
-  todisplay = path.replace("/P5JS-Sketches/", "Error 404 - ")
+  todisplay = path.replace("/P5JS-Sketches/", "")
   foreground = createTextMask(todisplay, width, height).get();
 }
 
@@ -150,6 +150,7 @@ function createTextMask(str, w, h){
   mask.textSize(ts);
   mask.textLeading(ts - 40);
   mask.textFont(myFont);
-  mask.text(str, 30, 0, w, h);
+  mask.text("Error 404", 30, 0, w, h/2);
+  mask.text(str, 30, h/2, w, h/2);
   return mask;
 }
