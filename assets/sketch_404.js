@@ -23,7 +23,7 @@ function setup(){
   back.noStroke();
   reset();
   counter = 0;
-  todisplay = path.replace("/P5JS-Sketches/", "Error 404")
+  todisplay = path.replace("/P5JS-Sketches/", "Error 404 - ")
   foreground = createTextMask(todisplay, width, height).get();
 }
 
