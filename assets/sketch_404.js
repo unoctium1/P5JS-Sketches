@@ -6,7 +6,7 @@ let isStaticNoise = false;
 let isPaused = false;
 let path = window.location.pathname;
 
-let ts = 145;
+let ts = 140;
 
 const RectType = {"normal":1, "boxxy":2, "noisy":3, "shaky":4, "random":5};
 
@@ -17,13 +17,13 @@ function preload() {
 }
 
 function setup(){
-  const c = createCanvas(screenWidth, 1/screenWidth * 400000);
+  const c = createCanvas(windowWidth, 400000/windowWidth);
   c.parent('anim');
   back = createGraphics(width, height);
   back.noStroke();
   reset();
   counter = 0;
-  todisplay = path.replace("/P5JS-Sketches/", "")
+  todisplay = path.replace("/P5JS-Sketches/", "");
   foreground = createTextMask(todisplay, width, height).get();
 }
 
@@ -79,11 +79,6 @@ function draw(){
   }
   (img = back.get()).mask(foreground);
   image(img,0,0);
-  /*
-  noFill();
-  stroke(0);
-  rect(0,0,width-1,height-1);
-  */
 }
 
 function chooseRect(x, y){
