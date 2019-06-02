@@ -18,7 +18,7 @@ function preload() {
 
 function setup(){
   const c = createCanvas(windowWidth, 400000/windowWidth);
-  c.parent('anim');
+  c.parent('main_content_wrap');
   back = createGraphics(width, height);
   back.noStroke();
   reset();
