@@ -143,7 +143,7 @@ function createTextMask(str, w, h){
   let mask = createGraphics(w, h);
   mask.textAlign(CENTER, CENTER);
   mask.textSize(ts);
-  mask.textLeading(ts - 40);
+  mask.textLeading(ts - 50);
   mask.textFont(myFont);
   mask.text("Error 404", 30, 0, w, h/2);
   mask.text(str, 30, h/2, w, h/2);
