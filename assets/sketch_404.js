@@ -6,7 +6,7 @@ let isStaticNoise = false;
 let isPaused = false;
 let path = window.location.pathname;
 
-let ts = 145;
+let ts = 140;
 
 const RectType = {"normal":1, "boxxy":2, "noisy":3, "shaky":4, "random":5};
 
@@ -17,13 +17,13 @@ function preload() {
 }
 
 function setup(){
-  const c = createCanvas(screenWidth, 1/screenWidth * 400000);
-  c.parent('anim');
+  const c = createCanvas(windowWidth, 400000/windowWidth);
+  c.parent('main_content_wrap');
   back = createGraphics(width, height);
   back.noStroke();
   reset();
   counter = 0;
-  todisplay = path.replace("/P5JS-Sketches/", "")
+  todisplay = path.replace("/P5JS-Sketches/", "");
   foreground = createTextMask(todisplay, width, height).get();
 }
 
@@ -79,11 +79,6 @@ function draw(){
   }
   (img = back.get()).mask(foreground);
   image(img,0,0);
-  /*
-  noFill();
-  stroke(0);
-  rect(0,0,width-1,height-1);
-  */
 }
 
 function chooseRect(x, y){
@@ -148,7 +143,7 @@ function createTextMask(str, w, h){
   let mask = createGraphics(w, h);
   mask.textAlign(CENTER, CENTER);
   mask.textSize(ts);
-  mask.textLeading(ts - 40);
+  mask.textLeading(ts - 50);
   mask.textFont(myFont);
   mask.text("Error 404", 30, 0, w, h/2);
   mask.text(str, 30, h/2, w, h/2);

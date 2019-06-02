@@ -13,5 +13,7 @@ I wanted to get a VHS screen effect. This is not really what I was going for, bu
 Click to change pixel size, p to pause, space to turn off random color seed. Hit c, v, b, n, or m to change pixel style.
 
 ### [Screen Mask Variant](ScreenMask/)
-### [Screen Mask Exclusion](ScreenMaskExclude/)
 All the above controls are supported
+
+### [Screen Mask Exclusion](ScreenMaskExclude/)
+Use the up and down arrows to cycle pixel style, and use escape to pause
