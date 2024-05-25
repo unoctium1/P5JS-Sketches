@@ -69,4 +69,15 @@ class Node{
       return ret;
       
     }
+
+    BreakReference(){
+      if(this.Previous != null){
+        this.Previous.Next = null;
+        this.Previous = null;
+      }
+      if(this.Next != null){
+        this.Next.Previous = null;
+        this.Next = null;
+      }
+    }
   }

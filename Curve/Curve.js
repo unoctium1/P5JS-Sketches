@@ -5,7 +5,11 @@ let angleMode = false;
 
 let drawNewPoint = true;
 
-let debugMode = false;
+let debugMode = true;
+
+let instructions = 'Hit \'r\' to reset the page.\n'+
+  'Backspace undoes the last click.\n Middle mouse toggles where the curve should be drawn from.\n'+
+  '\'d\' toggle drawing a new point or not.\n Drag the slider to adjust fidelity';
 
 var incrementSlider;
 var angleToggle;
@@ -14,10 +18,13 @@ var cnv;
 function setup() {
   cnv = createCanvas(windowWidth, windowHeight);
   incrementSlider = createSlider(5, 50, increment, 1);
-  incrementSlider.position(19,19);
+  incrementSlider.position(19,39);
+
+  let inst = createP(instructions);
+  inst.position(19,0);
 
   //angleToggle = createCheckbox("Lock Angles", angleMode);
-  //angleToggle.position(19, 39);
+  //angleToggle.position(19, 59);
 
   cnv.mouseClicked(canvasMouseClicked);
   cnv.mousePressed(canvasMousePressed);
@@ -54,9 +61,8 @@ function addPoint(drawCurve){
       if(newPrev != null){
         newPrev.SetNextNode(points[count-3]);
       }
-      points.pop();
-      points.pop();
-      count -= 2;
+      removeLast();
+      removeLast();
     }else{
       prev.SetDrawPoints(false);
     }
@@ -65,6 +71,12 @@ function addPoint(drawCurve){
   if(count > 0){
     points[count-1].SetNextNode(points[count]);
   }
+}
+
+function removeLast(){
+  var p = points.pop();
+  p.BreakReference();
+  count--;
 }
 
 function createNode(){
@@ -109,16 +121,19 @@ function keyPressed(){
     count = 0;
   }else if(key === 'd'){
     if(drawNewPoint){
-      points.pop();
-      count--;
+      removeLast();
     }
     drawNewPoint = !drawNewPoint;
+    console.log(points.length);
   }else if(keyCode === BACKSPACE){
-    points.pop();
-    count--;
+    removeLast();
     if(points.length > 2 && points[count-2].drawPoints == false){
       points[count-2].SetDrawPoints(true);
     }
+  }
+
+  if(debugMode){
+    debugPoints();
   }
 }
 
@@ -126,7 +141,7 @@ function debugPoints(){
   var s = points.length + " Points:\n";
   for(let i = 0; i < points.length; i++){
     var p = points[i];
-    s += "" + p.p + " draw points: " + p.drawPoints + " next angle: " + p.nextAngle + " prev angle: " + p.prevAngle + "\n";
+    s += "" + p.p + " draw points: " + p.drawPoints + "\n";
   }
   console.log(s);
 }
