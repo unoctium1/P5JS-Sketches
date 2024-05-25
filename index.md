@@ -4,6 +4,8 @@ title: Table of Contents
 ---
 ## [Bubbles](Bubbles/)
 A very simple attempt at using DOM to make a fully configurable sketch
+## [Curve](Curve/)
+Simple curve drawing tool 
 ## [Pointillism](Pointillism/)
 ### [Mirror](https://editor.p5js.org/unoctium1/full/EHw1At8ly)
 Renders the given image in a pointillist style, click to fill in a region faster. For some reason this seems to have issues with github hosting, so I recommend the above mirror.
